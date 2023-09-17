@@ -4,9 +4,13 @@ Not necessarily fast, but fairly simple and spec-compliant.
 
 Requires a C++20-ready compiler and header files (notably the \<format\> header). You may have to tweak the Makefile to get it compiled.
 
-`make test` uses the test files from https://github.com/nst/JSONTestSuite to check spec compliance.
+## Makefile targets
 
-`make out/libjson.a` builds a static library.
+- `make test` uses the test files from https://github.com/nst/JSONTestSuite to check spec compliance.
+
+- `make out/validator` builds the `out/validator` binary. It takes a JSON file path as a command line argument, tries to parse the file, and returns a 0/2 status code depending on the result. Any parsing or encoding error is printed to stderr. This is used by `test.py` to run the test suite. (Status code 1 is skipped to allow distinguishing parser errors from crashes.)
+
+- `make out/formatter` builds the `out/formatter` binary. It takes a JSON file path as a command line argument, parses the file, then serializes it back to standard output. This can be used to manually check round trips.
 
 ## Implementation choices
 

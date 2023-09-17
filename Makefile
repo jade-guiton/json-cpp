@@ -29,9 +29,6 @@ out:
 out/%.o: %.cpp $(HEADERS) | out
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-out/libjson.a: out/json.o
-	$(AR) rcs out/libjson.a out/json.o
-
 out/validator: out/validator.o out/json.o
 	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
